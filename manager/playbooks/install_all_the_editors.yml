@@ -1,0 +1,27 @@
+---
+- name: Install all the editors
+  hosts: containers
+  tasks:
+  - name: install vim
+    apt:
+      name: vim
+      state: present
+
+  - name: Install nano
+    apt:
+      name: nano
+      state: present
+    
+  # - name: Install emacs
+  #   apt:
+  #     name: emacs
+  #     state: present
+
+  - name: Template a conf vimrc file
+    ansible.builtin.template:
+      src: etc/vimrc_config
+      dest: ~/.vimrc
+      mode: u=rw,g=r,o=r
+
+
+  
